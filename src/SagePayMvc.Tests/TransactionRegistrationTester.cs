@@ -75,7 +75,7 @@ namespace SagePayMvc.Tests {
 		[Test]
 		public void Creates_correct_post() {
 			//yuck
-			string expected = "VPSProtocol=2.23&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=20.00&Currency=GBP&Description=My+basket";
+			string expected = "VPSProtocol=4.00&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=20.00&Currency=GBP&Description=My+basket";
 			expected += "&NotificationURL=" + StubUrlResolver.NotificationUrl + "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2";
 			expected += "&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state&BillingPhone=phone";
 			expected += "&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2";
@@ -94,12 +94,12 @@ namespace SagePayMvc.Tests {
 
 		[Test]
 		public void Deserialzies_result() {
-			string sagePayResponse = "VPSProtocol=2.23\r\nStatus=AUTHENTICATED\r\nStatusDetail=detail goes here\r\nVPSTxId=12345\r\nSecurityKey=abcde\r\nNextURL=http://foo.com";
+			string sagePayResponse = "VPSProtocol=4.00\r\nStatus=AUTHENTICATED\r\nStatusDetail=detail goes here\r\nVPSTxId=12345\r\nSecurityKey=abcde\r\nNextURL=http://foo.com";
 			requestFactory.Setup(x => x.SendRequest(It.IsAny<string>(), It.IsAny<string>())).Returns(sagePayResponse);
 
 			var result = registration.Send(null, "foo", basket, billingAddress, deliveryAddress, "email@address.com");
 			result.NextURL.ShouldEqual("http://foo.com");
-			result.VPSProtocol.ShouldEqual("2.23");
+			result.VPSProtocol.ShouldEqual("4.00");
 			result.Status.ShouldEqual(ResponseType.Authenticated);
 			result.StatusDetail.ShouldEqual("detail goes here");
 			result.VPSTxId.ShouldEqual("12345");

@@ -28,7 +28,7 @@ namespace SagePayMvc {
 	/// Configuration data
 	/// </summary>
 	public class Configuration {
-		public const string ProtocolVersion = "2.23";
+		public const string ProtocolVersion = "4.00";
 		public const string DefaultControllerName = "PaymentResponse";
 		public const string DefaultFailedAction = "Failed";
 		public const string DefaultSuccessAction = "Success";
