@@ -123,7 +123,13 @@ namespace SagePayMvc.Internal {
 			get { return billingAddress.Address2; }
 		}
 
-		public string BillingCity {
+        [Optional]
+        public string BillingAddress3
+        {
+            get { return billingAddress.Address3; }
+        }
+
+        public string BillingCity {
 			get { return billingAddress.City; }
 		}
 
@@ -162,7 +168,13 @@ namespace SagePayMvc.Internal {
 			get { return deliveryAddress.Address2; }
 		}
 
-		public string DeliveryCity {
+        [Optional]
+        public string DeliveryAddress3
+        {
+            get { return deliveryAddress.Address3; }
+        }
+
+        public string DeliveryCity {
 			get { return deliveryAddress.City; }
 		}
 

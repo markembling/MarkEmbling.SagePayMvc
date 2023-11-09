@@ -32,6 +32,7 @@ namespace SagePayMvc {
 		public string Firstnames { get; set; }
 		public string Address1 { get; set; }
 		public string Address2 { get; set; }
+		public string Address3 { get; set; }
 		public string City { get; set; }
 		public string PostCode { get; set; }
 		public string Country { get; set; }
@@ -51,6 +52,7 @@ namespace SagePayMvc {
 			builder.Append(BuildPropertyString(prefix, x => x.Firstnames, Firstnames));
 			builder.Append(BuildPropertyString(prefix, x => x.Address1, Address1));
 			builder.Append(BuildPropertyString(prefix, x => x.Address2, Address2, true));
+			builder.Append(BuildPropertyString(prefix, x => x.Address3, Address3, true));
 			builder.Append(BuildPropertyString(prefix, x => x.City, City));
 			builder.Append(BuildPropertyString(prefix, x => x.PostCode, PostCode));
 			builder.Append(BuildPropertyString(prefix, x => x.Country, Country));
