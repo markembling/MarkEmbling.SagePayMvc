@@ -41,6 +41,7 @@ namespace SagePayMvc.Tests {
 				Firstnames = "delivery-firstname",
 				Address1 = "delivery-address1",
 				Address2 = "delivery-address2",
+				Address3 = "delivery-address3",
 				City = "delivery-city",
 				PostCode = "delivery-postcode",
 				State = "delivery-state",
@@ -53,6 +54,7 @@ namespace SagePayMvc.Tests {
 				Firstnames = "Firstname",
 				Address1 = "Address1",
 				Address2 = "Address2",
+				Address3 = "Address3",
 				City = "City",
 				PostCode = "postcode",
 				Country = "country",
@@ -76,9 +78,9 @@ namespace SagePayMvc.Tests {
 		public void Creates_correct_post() {
 			//yuck
 			string expected = "VPSProtocol=4.00&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=20.00&Currency=GBP&Description=My+basket";
-			expected += "&NotificationURL=" + StubUrlResolver.NotificationUrl + "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2";
+			expected += "&NotificationURL=" + StubUrlResolver.NotificationUrl + "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2&BillingAddress3=Address3";
 			expected += "&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state&BillingPhone=phone";
-			expected += "&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2";
+			expected += "&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2&DeliveryAddress3=delivery-address3";
 			expected += "&DeliveryCity=delivery-city&DeliveryPostCode=delivery-postcode&DeliveryCountry=delivery-country&DeliveryState=delivery-state&DeliveryPhone=delivery-phone&CustomerEMail=email%40address.com";
 			expected += "&Basket=" + HttpUtility.UrlEncode(basket.ToString());
 			expected += "&AllowGiftAid=0&Apply3DSecure=0&Profile=NORMAL";
