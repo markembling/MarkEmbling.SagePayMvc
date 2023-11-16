@@ -24,24 +24,38 @@ namespace SagePayMvc.Internal {
 	/// </summary>
 	public static class TestHelper {
 		public const string ValidSecurityKey = "testkey123";
-		public const string ValidSignature = "46EAE2D06815F3406C41776422711985";
+		public const string ValidSignature = "89E1B763A6A687F7A237E7EBF6B99765";
 		public const string VendorName = "testvendor";
 
 		public static SagePayResponse CreateValidResponse() {
-			return new SagePayResponse {
-			                           	VendorTxCode = "2005296940fc9522c0704cabaf4016b561b36311",
-			                           	VPSTxId = "{EBCC5038-1460-9E2F-8A57-24D148B8CD53}",
-			                           	Status = ResponseType.Ok,
-			                           	StatusDetail = "0000 : The Authorisation was Successful.",
-			                           	TxAuthNo = "4665060",
-			                           	AVSCV2 = "ALL MATCH",
-			                           	AddressResult = "MATCHED",
-			                           	PostCodeResult = "MATCHED",
-			                           	CV2Result = "MATCHED",
-			                           	GiftAid = "0",
-			                           	ThreeDSecureStatus = "NOTCHECKED",
-			                           	VPSSignature = ValidSignature
-			                           };
+			return new SagePayResponse
+			{
+				VendorTxCode = "2005296905ead38e3cd845e19df728a2cac8bb73",
+				VPSTxId = "{5C24A0B8-416E-9806-35F0-D0514B7EDEA6}",
+				Status = ResponseType.Ok,
+				StatusDetail = "0000 : The Authorisation was Successful.",
+				TxAuthNo = "20005102",
+				AVSCV2 = "SECURITY CODE MATCH ONLY",
+				AddressResult = "NOTMATCHED",
+				PostCodeResult = "NOTMATCHED",
+				CV2Result = "MATCHED",
+				GiftAid = "0",
+				ThreeDSecureStatus = "NOTCHECKED",
+				CAVV = "",
+				AddressStatus = "",
+				PayerStatus = "",
+				CardType = "VISA",
+				Last4Digits = "0006",
+				DeclineCode = "00",
+				ExpiryDate = "0124",
+				FraudResponse = "",
+				BankAuthCode = "999777",
+				ACSTransID = "",
+				DSTransID = "",
+				SchemeTraceID = "MSwnHPqcouZtJVemiIootJRzCfCpRiNqkRhPt0IS011dKzIFlHoozpyj",
+
+				VPSSignature = ValidSignature
+			};
 		}
 	}
 }

@@ -44,8 +44,16 @@ namespace SagePayMvc {
 		const string PayerStatus = "PayerStatus";
 		const string CardType = "CardType";
 		const string Last4Digits = "Last4Digits";
+		const string DeclineCode = "DeclineCode";
+		const string ExpiryDate = "ExpiryDate";
+		const string FraudResponse = "FraudResponse";
+		const string BankAuthCode = "BankAuthCode";
+		const string ACSTransID = "ACSTransID";
+		const string DSTransID = "DSTransID";
+		const string SchemeTraceID = "SchemeTraceID";
 
-		public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) {
+
+        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext) {
 			var response = new SagePayResponse();
 			response.Status = GetStatus(bindingContext.ValueProvider);
 			response.VendorTxCode = GetFormField(VendorTxCode, bindingContext.ValueProvider);
@@ -64,6 +72,13 @@ namespace SagePayMvc {
 			response.PayerStatus = GetFormField(PayerStatus, bindingContext.ValueProvider);
 			response.CardType = GetFormField(CardType, bindingContext.ValueProvider);
 			response.Last4Digits = GetFormField(Last4Digits, bindingContext.ValueProvider);
+			response.DeclineCode = GetFormField(DeclineCode, bindingContext.ValueProvider);
+			response.ExpiryDate = GetFormField(ExpiryDate, bindingContext.ValueProvider);
+			response.FraudResponse = GetFormField(FraudResponse, bindingContext.ValueProvider);
+			response.BankAuthCode = GetFormField(BankAuthCode, bindingContext.ValueProvider);
+			response.ACSTransID = GetFormField(ACSTransID, bindingContext.ValueProvider);
+			response.DSTransID = GetFormField(DSTransID, bindingContext.ValueProvider);
+			response.SchemeTraceID = GetFormField(SchemeTraceID, bindingContext.ValueProvider);
 			return response;
 		}
 

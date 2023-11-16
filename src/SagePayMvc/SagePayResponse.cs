@@ -45,11 +45,18 @@ namespace SagePayMvc {
 		public string PayerStatus { get; set; }
 		public string CardType { get; set; }
 		public string Last4Digits { get; set; }
+		public string DeclineCode { get; set; }
+		public string ExpiryDate { get; set; }
+		public string FraudResponse { get; set; }
+		public string BankAuthCode { get; set; }
+		public string ACSTransID { get; set; }
+		public string DSTransID { get; set; }
+		public string SchemeTraceID { get; set; }
 
-		/// <summary>
-		/// Was the transaction successful?
-		/// </summary>
-		public virtual bool WasTransactionSuccessful {
+        /// <summary>
+        /// Was the transaction successful?
+        /// </summary>
+        public virtual bool WasTransactionSuccessful {
 			get {
 				return (Status == ResponseType.Ok ||
 				        Status == ResponseType.Authenticated ||
@@ -86,7 +93,15 @@ namespace SagePayMvc {
 			builder.Append(PayerStatus);
 			builder.Append(CardType);
 			builder.Append(Last4Digits);
-			var hash = FormsAuthentication.HashPasswordForStoringInConfigFile(builder.ToString(), "MD5");
+			builder.Append(DeclineCode);
+            builder.Append(ExpiryDate);
+            builder.Append(FraudResponse);
+            builder.Append(BankAuthCode);
+            builder.Append(ACSTransID);
+            builder.Append(DSTransID);
+            builder.Append(SchemeTraceID);
+
+            var hash = FormsAuthentication.HashPasswordForStoringInConfigFile(builder.ToString(), "MD5");
 			return hash;
 		}
 	}
