@@ -83,13 +83,13 @@ namespace SagePayMvc.Tests {
 		[Test]
 		public void Creates_correct_post() {
 			//yuck
-			string expected = "VPSProtocol=4.00&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=20.00&Currency=GBP&Description=My+basket";
+			string expected = "VPSProtocol=4.00&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=26.25&Currency=GBP&Description=My+basket";
 			expected += "&NotificationURL=" + StubUrlResolver.NotificationUrl + "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2&BillingAddress3=Address3";
 			expected += "&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state&BillingPhone=phone";
 			expected += "&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2&DeliveryAddress3=delivery-address3";
 			expected += "&DeliveryCity=delivery-city&DeliveryPostCode=delivery-postcode&DeliveryCountry=delivery-country&DeliveryState=delivery-state&DeliveryPhone=delivery-phone&CustomerEMail=email%40address.com";
 			expected += "&Basket=" + HttpUtility.UrlEncode(basket.ToString());
-			expected += "&AllowGiftAid=0&Apply3DSecure=0&Profile=NORMAL";
+			expected += "&AllowGiftAid=0&Apply3DSecure=0&Profile=NORMAL&AccountType=E";
 
 			string actual = null;
 
@@ -106,10 +106,10 @@ namespace SagePayMvc.Tests {
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("de-de");
 
 			//yuck
-			string expected = "VPSProtocol=3.0&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=26.25&Currency=GBP&Description=My+basket";
+			string expected = "VPSProtocol=4.00&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=26.25&Currency=GBP&Description=My+basket";
 			expected += "&NotificationURL=http://stub/notification";
-			expected += "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state";
-			expected += "&BillingPhone=phone&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2&DeliveryCity=delivery-city";
+			expected += "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2&BillingAddress3=Address3&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state";
+			expected += "&BillingPhone=phone&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2&DeliveryAddress3=delivery-address3&DeliveryCity=delivery-city";
 			expected += "&DeliveryPostCode=delivery-postcode&DeliveryCountry=delivery-country&DeliveryState=delivery-state&DeliveryPhone=delivery-phone&CustomerEMail=email%40address.com";
 			expected += "&Basket=1%3afoo%3a1%3a10.50%3a15.75%3a26.25%3a26.25&AllowGiftAid=0&Apply3DSecure=0&Profile=NORMAL&AccountType=E";
 
