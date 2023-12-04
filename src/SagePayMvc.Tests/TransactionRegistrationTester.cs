@@ -81,12 +81,13 @@ namespace SagePayMvc.Tests {
 		[Test]
 		public void Creates_correct_post() {
 			//yuck
-			string expected = "VPSProtocol=3.0&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=26.25&Currency=GBP&Description=My+basket";
-			expected += "&NotificationURL=http://stub/notification";
-			expected += "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state";
-			expected += "&BillingPhone=phone&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2&DeliveryCity=delivery-city";
-			expected += "&DeliveryPostCode=delivery-postcode&DeliveryCountry=delivery-country&DeliveryState=delivery-state&DeliveryPhone=delivery-phone&CustomerEMail=email%40address.com";
-			expected += "&Basket=1%3afoo%3a1%3a10.50%3a15.75%3a26.25%3a26.25&AllowGiftAid=0&Apply3DSecure=0&Profile=NORMAL&AccountType=E";
+			string expected = "VPSProtocol=4.00&TxType=PAYMENT&Vendor=TestVendor&VendorTxCode=foo&Amount=20.00&Currency=GBP&Description=My+basket";
+			expected += "&NotificationURL=" + StubUrlResolver.NotificationUrl + "&BillingSurname=Surname&BillingFirstnames=Firstname&BillingAddress1=Address1&BillingAddress2=Address2";
+			expected += "&BillingCity=City&BillingPostCode=postcode&BillingCountry=country&BillingState=state&BillingPhone=phone";
+			expected += "&DeliverySurname=delivery-surname&DeliveryFirstnames=delivery-firstname&DeliveryAddress1=delivery-address1&DeliveryAddress2=delivery-address2";
+			expected += "&DeliveryCity=delivery-city&DeliveryPostCode=delivery-postcode&DeliveryCountry=delivery-country&DeliveryState=delivery-state&DeliveryPhone=delivery-phone&CustomerEMail=email%40address.com";
+			expected += "&Basket=" + HttpUtility.UrlEncode(basket.ToString());
+			expected += "&AllowGiftAid=0&Apply3DSecure=0&Profile=NORMAL";
 
 			string actual = null;
 
@@ -130,12 +131,12 @@ namespace SagePayMvc.Tests {
 
 		[Test]
 		public void Deserialzies_result() {
-			string sagePayResponse = "VPSProtocol=2.23\r\nStatus=AUTHENTICATED\r\nStatusDetail=detail goes here\r\nVPSTxId=12345\r\nSecurityKey=abcde\r\nNextURL=http://foo.com";
+			string sagePayResponse = "VPSProtocol=4.00\r\nStatus=AUTHENTICATED\r\nStatusDetail=detail goes here\r\nVPSTxId=12345\r\nSecurityKey=abcde\r\nNextURL=http://foo.com";
 			requestFactory.Setup(x => x.SendRequest(It.IsAny<string>(), It.IsAny<string>())).Returns(sagePayResponse);
 
 			var result = registration.Send(null, "foo", basket, billingAddress, deliveryAddress, "email@address.com", PaymentFormProfile.Normal);
 			result.NextURL.ShouldEqual("http://foo.com");
-			result.VPSProtocol.ShouldEqual("2.23");
+			result.VPSProtocol.ShouldEqual("4.00");
 			result.Status.ShouldEqual(ResponseType.Authenticated);
 			result.StatusDetail.ShouldEqual("detail goes here");
 			result.VPSTxId.ShouldEqual("12345");

@@ -38,7 +38,7 @@ namespace SagePayMvc.Tests {
 
 		[Test]
 		public void Creates_correct_post() {
-			string expected = "VPSProtocol=3.0&TxType=REFUND&Vendor=TestVendor&VendorTxCode=REF-foo&Amount=5.00&Currency=GBP";
+			string expected = "VPSProtocol=4.00&TxType=REFUND&Vendor=TestVendor&VendorTxCode=REF-foo&Amount=5.00&Currency=GBP";
 			expected += "&Description=Refund+Reason&RelatedVPSTxId=abc123&RelatedVendorTxCode=def456";
 			expected += "&RelatedSecurityKey=12345&RelatedTxAuthNo=67890";
 
@@ -60,7 +60,7 @@ namespace SagePayMvc.Tests {
 
 		[Test]
 		public void Deserializes_result() {
-			string response = "VPSProtocol=2.23\r\nStatus=OK\r\nStatusDetail=detail\r\nVPSTxId=123\r\nTxAuthNo=456\r\n";
+			string response = "VPSProtocol=4.00\r\nStatus=OK\r\nStatusDetail=detail\r\nVPSTxId=123\r\nTxAuthNo=456\r\n";
 			requestFactory.Setup(x => x.SendRequest(It.IsAny<string>(), It.IsAny<string>())).Returns(response);
 
 			var result = registration.Send(
@@ -72,7 +72,7 @@ namespace SagePayMvc.Tests {
 				                    /*related security key*/"12345",
 				                    /*related auth no*/"67890");
 
-			result.VPSProtocol.ShouldEqual("2.23");
+			result.VPSProtocol.ShouldEqual("4.00");
 			result.Status.ShouldEqual(ResponseType.Ok);
 			result.StatusDetail.ShouldEqual("detail");
 			result.VPSTxId.ShouldEqual("123");
